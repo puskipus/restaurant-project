@@ -1,1 +1,1 @@
-I create this website with Laravel. Dont forget to change database on .env file and migrate the database.
+I created this website with Laravel. Don't forget to change the database on the .env file and migrate the database.
