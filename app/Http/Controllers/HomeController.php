@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chart;
 use App\Models\Chef;
 use App\Models\Food;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class HomeController extends Controller
         if ($usertype == "1") {
             return view("admin.adminhome");
         } else {
-            return view("home", compact('data', 'data2'));
+            $user_id = Auth::id();
+            $count = Chart::where('user_id', $user_id)->count();
+            return view("home", compact('data', 'data2', 'count'));
         }
     }
 }

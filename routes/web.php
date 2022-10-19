@@ -34,6 +34,8 @@ Route::get('/updateChef/{id}', [AdminController::class, "updateChef"]);
 Route::post('/updateAdminChef/{id}', [AdminController::class, "updateAdminChef"]);
 Route::get('/deleteChef/{id}', [AdminController::class, "deleteChef"]);
 
+Route::post('/addChart/{id}', [AdminController::class, "addChart"]);
+
 Route::get('/deleteuser/{id}', [AdminController::class, "deleteuser"]);
 
 Route::middleware([

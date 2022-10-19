@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chart;
 use App\Models\Chef;
 use App\Models\Food;
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -155,5 +157,23 @@ class AdminController extends Controller
         $data->delete();
 
         return redirect()->back();
+    }
+
+    public function addChart(Request $request, $id)
+    {
+        if(Auth::id()) {
+
+            $cart = new Chart();
+            $cart->user_id = Auth::id();
+            $cart->food_id = $id;
+            $cart->quantity = $request->quantity;
+
+            $cart->save();
+
+            return redirect()->back();
+        } else {
+            return redirect('/login');
+        }
+
     }
 }
