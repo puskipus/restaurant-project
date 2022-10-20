@@ -32,4 +32,10 @@ class HomeController extends Controller
             return view("home", compact('data', 'data2', 'count'));
         }
     }
+
+    public function showCart($id)
+    {
+
+        return view('showCart');
+    }
 }
