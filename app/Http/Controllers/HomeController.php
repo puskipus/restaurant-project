@@ -32,4 +32,11 @@ class HomeController extends Controller
             return view("home", compact('data', 'data2', 'count'));
         }
     }
+
+    public function showCart($id)
+    {
+        $count = Chart::where('user_id', $id)->count();
+        $data = Chart::where('user_id', $id)->join('food', 'charts.food_id', '=', 'food.id')->get();
+        return view('showCart', compact('count', 'data'));
+    }
 }
