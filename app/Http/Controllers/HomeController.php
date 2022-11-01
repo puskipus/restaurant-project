@@ -36,7 +36,16 @@ class HomeController extends Controller
     public function showCart($id)
     {
         $count = Chart::where('user_id', $id)->count();
+        $data2 = Chart::select('*')->where('user_id', '=', $id)->get();
         $data = Chart::where('user_id', $id)->join('food', 'charts.food_id', '=', 'food.id')->get();
-        return view('showCart', compact('count', 'data'));
+        return view('showCart', compact('count', 'data', 'data2'));
+    }
+
+    public function remove($id)
+    {
+        $data = Chart::find($id);
+        $data->delete();
+
+        return redirect()->back();
     }
 }
