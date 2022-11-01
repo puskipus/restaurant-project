@@ -140,7 +140,7 @@ https://templatemo.com/tm-558-klassy-cafe
                     @endforeach
 
                     @foreach ($data2 as $d2)
-                        <tr>
+                        <tr style="position: relative; top: -150px; right: -360px;">
                             <td style="padding: 10px"><a href="{{ url('/remove', $d2->id) }}" class="btn btn-warning">Remove</a></td>
                         </tr>
                     @endforeach
