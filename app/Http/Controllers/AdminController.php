@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chart;
 use App\Models\Chef;
 use App\Models\Food;
+use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -175,5 +176,11 @@ class AdminController extends Controller
             return redirect('/login');
         }
 
+    }
+
+    public function orders()
+    {
+        $data = Order::all();
+        return view('admin.orders', compact('data'));
     }
 }
