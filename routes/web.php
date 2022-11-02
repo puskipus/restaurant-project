@@ -42,6 +42,7 @@ Route::post('/orderconfirm', [HomeController::class, "orderconfirm"]);
 Route::get('/deleteuser/{id}', [AdminController::class, "deleteuser"]);
 
 Route::get('/orders', [AdminController::class, "orders"]);
+Route::get('/search', [AdminController::class, "search"]);
 
 
 Route::middleware([
