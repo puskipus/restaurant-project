@@ -31,6 +31,8 @@ https://templatemo.com/tm-558-klassy-cafe
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     </head>
 
     <body>
@@ -124,35 +126,80 @@ https://templatemo.com/tm-558-klassy-cafe
             </div>
 
             <div>
-                <table align="center">
-                    <tr>
-                        <th style="padding: 10px">Food Name</th>
-                        <th style="padding: 10px">Price</th>
-                        <th style="padding: 10px">Quantity</th>
-                        <th style="padding: 10px">Action</th>
-                    </tr>
-                    @foreach ($data as $d)
-                        <tr align="center">
-                            <td style="padding: 10px">{{ $d->title }}</td>
-                            <td style="padding: 10px">{{ $d->price }}</td>
-                            <td style="padding: 10px">{{ $d->quantity }}</td>
+                <form action="{{ url('orderconfirm') }}" method="POST">
+                    @csrf
+                    <table align="center">
+                        <tr>
+                            <th style="padding: 10px">Food Name</th>
+                            <th style="padding: 10px">Price</th>
+                            <th style="padding: 10px">Quantity</th>
+                            <th style="padding: 10px">Action</th>
                         </tr>
-                    @endforeach
 
-                    @foreach ($data2 as $d2)
-                        <tr style="position: relative; top: -150px; right: -360px;">
-                            <td style="padding: 10px"><a href="{{ url('/remove', $d2->id) }}" class="btn btn-warning">Remove</a></td>
-                        </tr>
-                    @endforeach
+                        @foreach ($data as $d)
+                            <tr align="center">
+                                <td style="padding: 10px">
+                                    <input type="text" name="foodname[]" value="{{ $d->title }}" hidden>
+                                    {{ $d->title }}
+                                </td>
+                                <td style="padding: 10px">
+                                    <input type="text" name="price[]" value="{{ $d->price }}" hidden>
+                                    {{ $d->price }}
+                                </td>
+                                <td style="padding: 10px">
+                                    <input type="text" name="quantity[]" value="{{ $d->quantity }}" hidden>
+                                    {{ $d->quantity }}
+                                </td>
+                            </tr>
+                        @endforeach
 
-                </table>
+                        @foreach ($data2 as $d2)
+                            <tr style="position: relative; top: -150px; right: -250px;">
+                                <td style="padding: 10px"><a href="{{ url('/remove', $d2->id) }}" class="btn btn-warning">Remove</a></td>
+                            </tr>
+                        @endforeach
+
+                    </table>
+
+                    {{-- <div align='center' style="padding: ;">
+                        <button class="btn btn-primary" id="order">Order Now</button>
+                    </div> --}}
+
+                    <div id="appear" align='center' style="padding: 10px;">
+                        <div style="padding: 10px;">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" placeholder="Name">
+                        </div>
+                        <div style="padding: 10px;">
+                            <label for="phone">Phone</label>
+                            <input type="number" name="phone" placeholder="Phone Number">
+                        </div>
+                        <div style="padding: 10px;">
+                            <label for="name">Address</label>
+                            <input type="text" name="address" placeholder="Address">
+                        </div>
+                        <div style="padding: 10px;">
+                            <input style="color: black" class="btn btn-success" type="submit" value="Order">
+                        </div>
+                    </div>
+                </form>
             </div>
+
         </header>
 
     </body>
 
     <!-- ***** Header Area End ***** -->
+    <script type="text/javascript">
+        $("#order").click(
+            function(){
+                $("$appear").show();
+            }
+        );
+    </script>
+
     <!-- jQuery -->
+
     <script src="assets/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
